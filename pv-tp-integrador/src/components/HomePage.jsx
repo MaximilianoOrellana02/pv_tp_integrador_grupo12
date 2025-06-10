@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProducts, setLoading, setError } from '../redux/slices/productsSlice';
 import { addFavorite, removeFavorite } from '../redux/slices/favoritesSlice'; // Importamos las acciones de favoritos
+import { Link } from 'react-router-dom'; // Para enlaces a detalles de productos
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -69,9 +70,13 @@ const HomePage = () => {
                   style={{ background: isFavorite ? 'gold' : '#ccc', border: 'none', padding: '8px', borderRadius: '4px', cursor: 'pointer' }}
                 >
                   {isFavorite ? '★ Favorito' : '☆ Marcar Favorito'}
-                </button>
+                // </button>
                 {/* Botón para ver más detalles (lo implementaremos en el futuro) */}
-                <button style={{ marginLeft: '10px' }}>Ver más detalles</button>
+                <Link to={`/products/${product.id}`} style={{ marginLeft: '10px', textDecoration: 'none', color: '#007bff' }}>
+                  Ver detalles
+                </Link>
+                {/* Botón para ver más detalles (placeholder) */}
+                
               </div>
             );
           })

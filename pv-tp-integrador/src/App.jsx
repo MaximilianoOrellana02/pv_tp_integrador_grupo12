@@ -6,6 +6,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import HomePage from './components/HomePage.jsx'
 import FavoritesPage from './pages/FavoritesPage.jsx'
 import { Provider } from 'react-redux'
+import ProductDetailPage from './pages/ProductDetailPage.jsx'
 
 
 
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/products/:id" element={<ProductDetailPage/>} />
         {/* Aquí irán otras rutas en el futuro, como /products/:id, /favorites, etc. */}
       </Routes>
     </>
