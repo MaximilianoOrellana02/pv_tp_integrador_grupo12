@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from './slices/productsSlice';
-// Importa aquí otros reducers si tienes más slices
+import favoritesReducer from './slices/favoritesSlice'; // Importa el reducer del slice de favoritos
+// Importa aquí otros reducers 
 
 const store = configureStore({
   reducer: {
     products: productsReducer, // Asignamos el reducer del slice de productos
-    // Añade aquí otros reducers si tienes más slices (ej. favorites: favoritesReducer)
+    favorites: favoritesReducer, // Asignamos el reducer del slice de favoritos
+    
+    // Añade aquí otros reducers si tienes más slices
   },
 });
 
