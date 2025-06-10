@@ -15,6 +15,7 @@ header {
   display: flex; /* Para apilar las filas verticalmente */
   flex-direction: column; /* Apila los wrappers verticalmente */
   width: 100%;
+  height: 80vh;
 }
 
 .wrapper {
@@ -25,14 +26,24 @@ header {
 
 .img-item {
   flex-shrink: 0; /* Evita que las imágenes se achiquen */
-  animation: slide 30s linear infinite alternate; /* ¡Aquí está el cambio! */
-  width: 200px;
-  height: 200px;
+  animation: slide 30s linear infinite alternate;
+  width: 150px;
+  height: 150px;
   border-radius: 30px;
   padding: 20px;
   margin: 20px;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.img-item:hover {
+  scale: 1.02;
+}
+
+.wrapper:hover .img-item {
+  animation-play-state: paused; /* Pausa la animación */
 }
 
 .img-item img {
@@ -60,12 +71,6 @@ header {
   text-transform: lowercase;
   font-weight: bold;
   color: #280044;
-
-  filter: drop-shadow(20px 0 100px #e0b0ff) /* Brillo concentrado */
-    drop-shadow(100px 100px 200px #ffffff) /* Brillo medio */
-    drop-shadow(20px 20px 40px #ffffff)
-    drop-shadow(0px 0 60px rgba(255, 255, 255, 0.7))
-    drop-shadow(0 0 90px rgba(255, 255, 255, 0.4));
 }
 
 @keyframes slide {

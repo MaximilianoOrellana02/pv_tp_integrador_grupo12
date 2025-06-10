@@ -9,6 +9,7 @@ import {
 import { addFavorite, removeFavorite } from "../redux/slices/favoritesSlice"; // Importamos las acciones de favoritos
 
 import Header from "../views/Header/Header";
+import ProductCard from "../views/PruductCard/ProductCard";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -55,13 +56,7 @@ const HomePage = () => {
     <div>
       <Header></Header>
       <h1>Listado de Productos</h1>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          gap: "20px",
-        }}
-      >
+      <div className="contenedor">
         {products.length > 0 ? (
           products.map((product) => {
             // Verificar si el producto ya está en favoritos para mostrar el estado correcto del botón
@@ -78,43 +73,12 @@ const HomePage = () => {
             };
 
             return (
-              <div
+              <ProductCard
                 key={product.id}
-                style={{
-                  border: "1px solid #ccc",
-                  padding: "15px",
-                  borderRadius: "8px",
-                  textAlign: "left",
-                }}
-              >
-                <h3>{product.title}</h3>
-                <p>Categoría: {product.category}</p>
-                <p>Precio: ${product.price}</p>
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  style={{
-                    maxWidth: "100px",
-                    height: "auto",
-                    marginBottom: "10px",
-                  }}
-                />
-                {/* Botón/ícono de favorito */}
-                <button
-                  onClick={handleToggleFavorite}
-                  style={{
-                    background: isFavorite ? "gold" : "#ccc",
-                    border: "none",
-                    padding: "8px",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {isFavorite ? "★ Favorito" : "☆ Marcar Favorito"}
-                </button>
-                {/* Botón para ver más detalles (lo implementaremos en el futuro) */}
-                <button style={{ marginLeft: "10px" }}>Ver más detalles</button>
-              </div>
+                product={product}
+                handleToggleFavorite={handleToggleFavorite}
+                isFavorite={isFavorite}
+              />
             );
           })
         ) : (

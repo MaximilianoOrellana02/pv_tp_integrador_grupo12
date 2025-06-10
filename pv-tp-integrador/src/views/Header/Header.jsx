@@ -94,8 +94,9 @@ function Header() {
         </div>
       </div>
       <div className="main-content">
-        <div className="title">
-          <h1>shop</h1>
+        <div className="logo"></div>
+        <div className="text">
+          <p></p>
         </div>
       </div>
     </header>
