@@ -1,0 +1,78 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logo-nav {
+  display: flex;
+  align-items: center;
+}
+
+.logo-nav img {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+}
+
+.links ul a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+  font-size: 1.1em;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.links ul a:hover {
+  color: #007bff; /* Color azul al pasar el mouse */
+  transform: translateY(-2px); /* Pequeño levantamiento al pasar el mouse */
+}
+
+/* Efecto de subrayado al pasar el mouse (opcional) */
+.links ul a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px; /* Ajusta la distancia del subrayado */
+  left: 0;
+  background-color: #007bff; /* Color del subrayado */
+  transition: width 0.3s ease-in-out;
+}
+
+.links ul a:hover::after {
+  width: 100%; /* El subrayado se expande al pasar el mouse */
+}
+
+/* Estilos para pantallas pequeñas (responsive) */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column; /* Apila el logo y los enlaces en columnas */
+    padding: 15px 20px;
+  }
+
+  .logo-nav {
+    margin-bottom: 15px; /* Espacio entre el logo y los enlaces cuando están apilados */
+  }
+
+  .links ul {
+    flex-direction: column; /* Apila los enlaces */
+    gap: 10px; /* Reduce el espacio entre enlaces apilados */
+    text-align: center; /* Centra el texto de los enlaces */
+  }
+}

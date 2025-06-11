@@ -1,13 +1,23 @@
-// src/components/HomePage.jsx  <-- Nota: El archivo ahora está en 'components'
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setProducts, setLoading, setError } from '../redux/slices/productsSlice';
-import { addFavorite, removeFavorite } from '../redux/slices/favoritesSlice'; // Importamos las acciones de favoritos
-import { Link } from 'react-router-dom'; // Para enlaces a detalles de productos
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setProducts,
+  setLoading,
+  setError,
+} from "../redux/slices/productsSlice";
+import { addFavorite, removeFavorite } from "../redux/slices/favoritesSlice"; // Importamos las acciones de favoritos
+
+import Header from "../views/Header/Header";
+import ProductCard from "../views/PruductCard/ProductCard";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { data: products, loading, error } = useSelector((state) => state.products);
+
+  const {
+    data: products,
+    loading,
+    error,
+  } = useSelector((state) => state.products);
   // Obtenemos la lista de productos favoritos del estado global de Redux
   const favoriteProducts = useSelector((state) => state.favorites.items);
 
@@ -15,21 +25,21 @@ const HomePage = () => {
     const fetchProducts = async () => {
       dispatch(setLoading(true));
       try {
-        const response = await fetch('https://fakestoreapi.com/products');
+        const response = await fetch("https://fakestoreapi.com/products");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         dispatch(setProducts(data));
       } catch (err) {
-        console.error('Error fetching products:', err);
+        console.error("Error fetching products:", err);
         dispatch(setError(err.message));
       }
     };
 
     // Solo si no hay datos, no estamos cargando y no hay error previo, realizamos el fetch
     if (products.length === 0 && !loading && !error) {
-        fetchProducts();
+      fetchProducts();
     }
   }, [dispatch, products.length, loading, error]);
 
@@ -43,12 +53,15 @@ const HomePage = () => {
 
   return (
     <div>
+      <Header></Header>
       <h1>Listado de Productos</h1>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
+      <div className="contenedor">
         {products.length > 0 ? (
           products.map((product) => {
             // Verificar si el producto ya está en favoritos para mostrar el estado correcto del botón
-            const isFavorite = favoriteProducts.some(fav => fav.id === product.id);
+            const isFavorite = favoriteProducts.some(
+              (fav) => fav.id === product.id
+            );
 
             const handleToggleFavorite = () => {
               if (isFavorite) {
@@ -59,25 +72,12 @@ const HomePage = () => {
             };
 
             return (
-              <div key={product.id} style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px', textAlign: 'left' }}>
-                <h3>{product.title}</h3>
-                <p>Categoría: {product.category}</p>
-                <p>Precio: ${product.price}</p>
-                <img src={product.image} alt={product.title} style={{ maxWidth: '100px', height: 'auto', marginBottom: '10px' }} />
-                {/* Botón/ícono de favorito */}
-                <button
-                  onClick={handleToggleFavorite}
-                  style={{ background: isFavorite ? 'gold' : '#ccc', border: 'none', padding: '8px', borderRadius: '4px', cursor: 'pointer' }}
-                >
-                  {isFavorite ? '★ Favorito' : '☆ Marcar Favorito'}
-                // </button>
-                {/* Botón para ver más detalles (lo implementaremos en el futuro) */}
-                <Link to={`/products/${product.id}`} style={{ marginLeft: '10px', textDecoration: 'none', color: '#007bff' }}>
-                  Ver detalles
-                </Link>
-                {/* Botón para ver más detalles (placeholder) */}
-                
-              </div>
+              <ProductCard
+                key={product.id}
+                product={product}
+                handleToggleFavorite={handleToggleFavorite}
+                isFavorite={isFavorite}
+              />
             );
           })
         ) : (
