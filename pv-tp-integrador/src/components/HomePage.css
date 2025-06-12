@@ -15,7 +15,7 @@
 }
 
 .products-container h1 {
-  text-align: left; 
+  text-align: left;
   font-size: 25px;
   margin: 0;
 }
@@ -23,7 +23,7 @@
 .sort-controls {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .sort-controls label {
@@ -43,7 +43,7 @@
 
 .sort-controls select:focus {
   outline: none;
-  border-color: #007bff; 
+  border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
@@ -80,6 +80,15 @@
   .contenedor {
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+  }
+
+  .products-header {
+    flex-direction: column;
+  }
+
+  .products-header h1 {
+    font-size: 30px;
+    margin-bottom: 25px;
   }
 }
 

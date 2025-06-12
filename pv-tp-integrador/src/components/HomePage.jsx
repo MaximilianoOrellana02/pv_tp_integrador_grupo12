@@ -11,6 +11,7 @@ import Header from "../views/Header/Header";
 import ProductCard from "../views/PruductCard/ProductCard";
 
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const HomePage = () => {
       case "nameDesc":
         return b.title.localeCompare(a.title); // Ordenar por nombre descendente
       default:
-        return 0; 
+        return 0;
     }
   });
 

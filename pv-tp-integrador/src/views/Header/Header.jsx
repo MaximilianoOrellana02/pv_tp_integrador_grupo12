@@ -8,6 +8,7 @@ import {
 } from "../../redux/slices/productsSlice";
 
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 const shuffleArray = (array) => {
   const newArray = [...array];
@@ -68,27 +69,33 @@ function Header() {
         <div className="wrapper">
           {shuffledProductsRow1.map((product) => {
             return (
-              <div className="img-item">
-                <img src={product.image} alt="" />
-              </div>
+              <Link to={`/productos/${product.id}`}>
+                <div className="img-item">
+                  <img src={product.image} alt="" />
+                </div>
+              </Link>
             );
           })}
         </div>
         <div className="wrapper middle-row-animation">
           {shuffledProductsRow2.map((product) => {
             return (
-              <div className="img-item">
-                <img src={product.image} alt="" />
-              </div>
+              <Link to={`/productos/${product.id}`}>
+                <div className="img-item">
+                  <img src={product.image} alt="" />
+                </div>
+              </Link>
             );
           })}
         </div>
         <div className="wrapper">
           {products.map((product) => {
             return (
-              <div className="img-item">
-                <img src={product.image} alt="" />
-              </div>
+              <Link to={`/productos/${product.id}`}>
+                <div className="img-item">
+                  <img src={product.image} alt="" />
+                </div>
+              </Link>
             );
           })}
         </div>

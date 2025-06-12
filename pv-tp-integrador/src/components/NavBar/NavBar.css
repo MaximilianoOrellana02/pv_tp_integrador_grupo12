@@ -2,12 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #1d1717;
   padding: 15px 30px;
   position: sticky;
   top: 0;
   width: 100%;
   box-sizing: border-box;
+  z-index: 100;
 }
 
 .logo-nav {
@@ -31,7 +32,7 @@
 
 .links ul a {
   text-decoration: none;
-  color: #333333;
+  color: #ffffff;
   font-weight: 500;
   font-size: 1.1em;
   transition: color 0.3s ease, transform 0.2s ease;

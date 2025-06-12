@@ -7,6 +7,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import HomePage from "./components/HomePage.jsx";
 import FavoritesPage from "./pages/FavoritesPage.jsx";
+
+import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 import { Provider } from "react-redux";
 import Header from "./views/Header/Header.jsx";
 
@@ -17,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
-        {/* Aquí irán otras rutas en el futuro, como /products/:id, /favorites, etc. */}
+        <Route path="/productos/:id" element={<ProductDetailPage />} />
       </Routes>
     </>
   );
