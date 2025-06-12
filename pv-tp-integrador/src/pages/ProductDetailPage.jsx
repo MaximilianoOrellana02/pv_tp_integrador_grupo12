@@ -1,58 +1,73 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-import "./ProductDetailPage.css";
-
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addFavorite, removeFavorite } from "../redux/slices/favoritesSlice";
 
+import {
+  selectProductById,
+  selectProductsStatus,
+} from "../redux/slices/productsSlice";
+
+import "./ProductDetailPage.css";
+
 function ProductDetailsPage() {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const productIdNum = parseInt(id, 10);
+
+  const productFromRedux = useSelector((state) =>
+    selectProductById(state, productIdNum)
+  );
+  const productsStatus = useSelector(selectProductsStatus);
+
+  const [product, setProduct] = useState(productFromRedux);
+  const [loading, setLoading] = useState(
+    !productFromRedux && productsStatus !== "succeeded"
+  );
   const [error, setError] = useState(null);
 
-  const dispatch = useDispatch();
-
   const favoriteItems = useSelector((state) => state.favorites.items);
-
   const isCurrentProductFavorite = favoriteItems.some(
-    (fav) => String(fav.id) === String(id)
+    (fav) => String(fav.id) === String(id) // Mantener la comparación como string para seguridad
   );
 
   const handleToggleFavorite = () => {
     if (product) {
-      // Asegúrate de que product esté cargado antes de añadir/quitar
       if (isCurrentProductFavorite) {
         dispatch(removeFavorite(product.id));
       } else {
-        // Al añadir, pasamos el objeto completo del producto
         dispatch(addFavorite(product));
       }
     }
   };
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      // Limpia estados al inicio de la carga
+    if (productFromRedux) {
+      setProduct(productFromRedux);
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
+    if (!id) {
+      setLoading(false);
+      setError("No se proporcionó un ID de producto en la URL.");
+      return;
+    }
+
+    const fetchProductDetailsFromAPI = async () => {
       setLoading(true);
       setError(null);
-      setProduct(null); // Borra el producto anterior
-
-      if (!id) {
-        setLoading(false);
-        setError("No se proporcionó un ID de producto en la URL.");
-        return;
-      }
+      setProduct(null);
 
       try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`); // Aquí se usa fetch
 
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error("Producto no encontrado.");
+            throw new Error("Producto no encontrado en la API.");
           } else {
             throw new Error(
               `Error al cargar los datos: ${response.statusText}`
@@ -61,25 +76,33 @@ function ProductDetailsPage() {
         }
 
         const data = await response.json();
-        setProduct(data); // Guarda el producto real cargado de la API
+        setProduct(data);
       } catch (err) {
         console.error(
           "Hubo un error al obtener los detalles del producto:",
           err
         );
-        setError(err.message || "No se pudo cargar el producto.");
+        setError(err.message || "No se pudo cargar el producto de la API.");
       } finally {
-        setLoading(false); // La carga ha terminado
+        setLoading(false);
       }
     };
 
-    fetchProductDetails(); // Llama a la función de carga
-  }, [id]);
+    if (
+      !productFromRedux &&
+      !loading &&
+      !error &&
+      productsStatus !== "loading"
+    ) {
+      fetchProductDetailsFromAPI();
+    }
+  }, [id, productFromRedux, productsStatus, loading, error]); // Dependencias del useEffect
 
+  // Renderizado condicional basado en los estados
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "20px" }}>
-        Cargando nombre del producto real...
+        Cargando detalles del producto...
       </div>
     );
   }
@@ -96,6 +119,8 @@ function ProductDetailsPage() {
     return (
       <div style={{ textAlign: "center", padding: "20px" }}>
         Producto no encontrado.
+        <br />
+        <Link to="/">Volver a la lista de productos</Link>
       </div>
     );
   }
@@ -106,11 +131,11 @@ function ProductDetailsPage() {
         <div className="product-button">
           <Link to={"/"} className="button-link">
             <button>
-              <i class="fa-solid fa-arrow-left"></i>
+              <i className="fa-solid fa-arrow-left"></i>
             </button>
           </Link>
         </div>
-        <img src={product.image} alt={product.name} />
+        <img src={product.image} alt={product.title} />
       </div>
       <div className="product-info">
         <div className="nombre">
@@ -122,20 +147,28 @@ function ProductDetailsPage() {
             }`}
           >
             {isCurrentProductFavorite ? (
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-heart"></i>
             ) : (
-              <i class="fa-regular fa-heart"></i>
+              <i className="fa-regular fa-heart"></i>
             )}
           </button>
         </div>
         <div className="product-details-container">
           <div className="prices">
-            <p className="current-price">USD 8.00</p>
+            <p className="current-price">
+              USD {product.price ? product.price.toFixed(2) : "N/A"}
+            </p>
+            <p>Stok: {product.rating ? product.rating.count : "N/A"}</p>
           </div>
           <div className="product-description-section">
             <p className="label-text">Descripción</p>
             <p>{product.description}</p>
           </div>
+          <Link to={`/edit-product/${product.id}`} className="edit-button-link">
+            <button className="edit-product-button">
+              <i className="fa-solid fa-edit"></i>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

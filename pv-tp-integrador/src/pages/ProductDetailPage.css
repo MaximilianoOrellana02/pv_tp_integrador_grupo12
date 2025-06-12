@@ -85,7 +85,7 @@
 /* Sección de precios */
 .prices {
   display: flex;
-  align-items: baseline; /* Alinea los textos en la base */
+  flex-direction: column;
   margin-bottom: 20px;
 }
 
@@ -93,7 +93,7 @@
   font-size: 1.6em; /* Precio actual más grande */
   font-weight: bold;
   color: #333;
-  margin-right: 10px; /* Espacio entre precios */
+  margin-bottom: 0px;
 }
 
 .label-text {
@@ -144,6 +144,29 @@
 .button-link button:hover {
   transform: scale(1.1);
   transition: all 0.3s ease;
+}
+
+.edit-button-link {
+  text-decoration: none;
+  border: none;
+}
+
+.edit-button-link button {
+  border: none;
+  background-color: rgb(0, 0, 255);
+  padding: 20px;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.edit-button-link button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.edit-button-link button i {
+  font-size: 25px;
 }
 
 @media (max-width: 1000px) {

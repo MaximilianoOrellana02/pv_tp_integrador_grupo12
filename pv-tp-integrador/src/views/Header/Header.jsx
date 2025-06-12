@@ -1,11 +1,6 @@
 // En un componente React, por ejemplo, Header.jsx
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setProducts,
-  setLoading,
-  setError,
-} from "../../redux/slices/productsSlice";
 
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -27,28 +22,6 @@ function Header() {
     loading,
     error,
   } = useSelector((state) => state.products);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      dispatch(setLoading(true));
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        dispatch(setProducts(data));
-      } catch (err) {
-        console.error("Error fetching products:", err);
-        dispatch(setError(err.message));
-      }
-    };
-
-    // Solo si no hay datos, no estamos cargando y no hay error previo, realizamos el fetch
-    if (products.length === 0 && !loading && !error) {
-      fetchProducts();
-    }
-  }, [dispatch, products.length, loading, error]);
 
   const shuffledProductsRow1 =
     products.length > 0

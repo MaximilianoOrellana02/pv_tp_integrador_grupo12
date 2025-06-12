@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setProducts,
-  setLoading,
-  setError,
+  fetchProducts, // Esto es el thunk creado con createAsyncThunk
+  selectAllProducts,
+  selectProductsStatus,
+  selectProductsError,
 } from "../redux/slices/productsSlice";
 import { addFavorite, removeFavorite } from "../redux/slices/favoritesSlice"; // Importamos las acciones de favoritos
 
@@ -16,38 +17,26 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   const dispatch = useDispatch();
 
-  const {
-    data: products,
-    loading,
-    error,
-  } = useSelector((state) => state.products);
-  // Obtenemos la lista de productos favoritos del estado global de Redux
+  const products = useSelector(selectAllProducts);
+  const productsStatus = useSelector(selectProductsStatus);
+  const productsError = useSelector(selectProductsError);
+
+  const loading = productsStatus === "loading";
+  const error = productsError;
+
   const favoriteProducts = useSelector((state) => state.favorites.items);
 
   //Estado para el criterio de ordenacion
   const [sortCriteria, setSortCriteria] = useState("default");
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      dispatch(setLoading(true));
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        dispatch(setProducts(data));
-      } catch (err) {
-        console.error("Error fetching products:", err);
-        dispatch(setError(err.message));
-      }
-    };
-
-    // Solo si no hay datos, no estamos cargando y no hay error previo, realizamos el fetch
-    if (products.length === 0 && !loading && !error) {
-      fetchProducts();
+    // Despachar el thunk fetchProducts directamente
+    // La lógica de setLoading, setProducts, setError ahora está en el extraReducers del productsSlice
+    if (productsStatus === "idle") {
+      // Solo carga si el estado es 'idle'
+      dispatch(fetchProducts());
     }
-  }, [dispatch, products.length, loading, error]);
+  }, [dispatch, productsStatus]);
 
   const handleSortChange = (event) => {
     setSortCriteria(event.target.value);
@@ -80,9 +69,11 @@ const HomePage = () => {
   return (
     <div className="header-container">
       <Header></Header>
+
       <div className="products-container">
         <div className="products-header">
           <h1>Productos</h1>
+
           <div className="sort-controls">
             <label htmlFor="sort-select">Ordenar por:</label>
             <select
@@ -96,6 +87,14 @@ const HomePage = () => {
               <option value="nameAsc">Nombre: A - Z</option>
               <option value="nameDesc">Nombre: Z - A</option>
             </select>
+            <Link to="/create-product" className="btn-agregar-link">
+              <button
+                disabled={productsStatus === "loading"}
+                className="btn-agregar"
+              >
+                <i class="fa-solid fa-plus"></i> Agregar
+              </button>
+            </Link>
           </div>
         </div>
         <div className="contenedor">

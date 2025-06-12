@@ -47,6 +47,35 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+.btn-agregar-link {
+  text-decoration: none;
+}
+
+.btn-agregar {
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  background-color: #3498db;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-agregar:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.btn-agregar i {
+  text-decoration: none;
+  font-size: 20px;
+}
+
 .contenedor {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
