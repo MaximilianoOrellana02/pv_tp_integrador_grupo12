@@ -55,7 +55,7 @@ Clonar el repositorio
 Si aún no lo tenés en tu máquina local, cloná el proyecto con:
 
 En el bash, escribí
-git clone https://github.com/tu-usuario/pv_tp_integrador_grupo12.git
+git clone https://github.com/MaximilianoOrellana02/pv_tp_integrador_grupo12
 
 Entrar al directorio del proyecto
 bash
