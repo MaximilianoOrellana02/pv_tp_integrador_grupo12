@@ -93,29 +93,30 @@ header {
 .middle-row-animation .img-item {
   animation-direction: alternate-reverse;
 }
-.title-container {
-  background-color: #ffffff;
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  border-radius: 25px;
-  box-shadow: rgb(0, 0, 0) 0px 22px 70px 4px;
-  padding: 15px 35px;
+.promo-banner {
+  background: linear-gradient(90deg, #ffd700, #ffad00);
+  text-align: center;
+  padding: 15px;
 }
 
-.carousel-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #000000;
-  text-align: center;
-  margin: 0;
+.promo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
 }
-.carousel-description {
-  font-size: 1.1rem;
-  color: #000000;
-  text-align: center;
-  margin-top: 10px;
-  padding: 0 15px;
+
+
+.carousel-container {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden; /* Esto elimina las barras de desplazamiento */
+  flex-wrap: nowrap; /* Evita el ajuste automático */
+  justify-content: center; /* Centra los elementos */
+}
+
+
+
+.img-item img:hover {
+  transform: scale(1.1);
 }
