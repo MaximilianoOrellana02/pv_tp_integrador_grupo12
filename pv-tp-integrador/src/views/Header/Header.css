@@ -15,7 +15,6 @@ header {
   display: flex; /* Para apilar las filas verticalmente */
   flex-direction: column; /* Apila los wrappers verticalmente */
   width: 100%;
-  height: 80vh;
 }
 
 .wrapper {
@@ -93,4 +92,21 @@ header {
 
 .middle-row-animation .img-item {
   animation-direction: alternate-reverse;
+}
+.title-container {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.carousel-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 30px;
+  border-radius: 10px;
+  text-align: center;
 }

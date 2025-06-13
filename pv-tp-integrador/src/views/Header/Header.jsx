@@ -38,48 +38,36 @@ function Header() {
 
   return (
     <header>
-      <div className="main-header">
-        <div className="wrapper">
-          {shuffledProductsRow1.map((product) => {
-            return (
-              <Link to={`/productos/${product.id}`}>
-                <div className="img-item">
-                  <img src={product.image} alt="" />
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-        <div className="wrapper middle-row-animation">
-          {shuffledProductsRow2.map((product) => {
-            return (
-              <Link to={`/productos/${product.id}`}>
-                <div className="img-item">
-                  <img src={product.image} alt="" />
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-        <div className="wrapper">
-          {products.map((product) => {
-            return (
-              <Link to={`/productos/${product.id}`}>
-                <div className="img-item">
-                  <img src={product.image} alt="" />
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-      <div className="main-content">
-        <div className="logo"></div>
-        <div className="text">
-          <p></p>
-        </div>
-      </div>
-    </header>
+  <div className="main-header">
+    <div className="title-container">
+      <h1 className="carousel-title">¡Descubre Nuestras Mejores Ofertas!</h1>
+    </div>
+    <div className="wrapper">
+      {shuffledProductsRow1.map((product) => (
+        <Link to={`/productos/${product.id}`} key={product.id}>
+          <div className="img-item">
+            <img src={product.image} alt="" />
+          </div>
+        </Link>
+      ))}
+    </div>
+    <div className="wrapper middle-row-animation">
+      {shuffledProductsRow2.map((product) => (
+        <Link to={`/productos/${product.id}`} key={product.id}>
+          <div className="img-item">
+            <img src={product.image} alt="" />
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
+  <div className="main-content">
+    <div className="logo"></div>
+    <div className="text">
+      <p></p>
+    </div>
+  </div>
+</header>
   );
 }
 
