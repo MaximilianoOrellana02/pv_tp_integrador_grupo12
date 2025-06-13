@@ -12,19 +12,19 @@ header {
 
 .main-header {
   margin: 0;
-  display: flex; /* Para apilar las filas verticalmente */
-  flex-direction: column; /* Apila los wrappers verticalmente */
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .wrapper {
-  display: flex; /* Para que las imágenes se muestren en fila */
-  overflow: hidden; /* Para ocultar el contenido que se desborda */
-  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  display: flex;
+  overflow: hidden;
+  width: 100%;
 }
 
 .img-item {
-  flex-shrink: 0; /* Evita que las imágenes se achiquen */
+  flex-shrink: 0;
   animation: slide 30s linear infinite alternate;
   width: 150px;
   height: 150px;
@@ -94,19 +94,28 @@ header {
   animation-direction: alternate-reverse;
 }
 .title-container {
+  background-color: #ffffff;
   position: absolute;
-  top: 10%;
+  top: 35%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+  border-radius: 25px;
+  box-shadow: rgb(0, 0, 0) 0px 22px 70px 4px;
+  padding: 15px 35px;
 }
 
 .carousel-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 15px 30px;
-  border-radius: 10px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #000000;
   text-align: center;
+  margin: 0;
+}
+.carousel-description {
+  font-size: 1.1rem;
+  color: #000000;
+  text-align: center;
+  margin-top: 10px;
+  padding: 0 15px;
 }
