@@ -30,4 +30,13 @@ Se ha implementado un manejo de estado global (mediante Context API o Redux, seg
 
 ## 👥 Integrantes del Grupo
 
-**[]** - GitHub: ``
+**[Orellana, Cristian Maximiliano]**
+**[Caucota, Gonzalo]**
+**[Alvarez, Mateo]**
+**[Guari, Cristian]**
+
+## Instalacion
+
++ npm install
++ npm install react-router-dom
++ npm install @reduxjs/toolkit react-redux
