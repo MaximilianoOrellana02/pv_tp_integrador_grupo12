@@ -35,8 +35,46 @@ Se ha implementado un manejo de estado global (mediante Context API o Redux, seg
 **[Alvarez, Mateo]**
 **[Guari, Cristian]**
 
-## Instalacion
+🧩 Cómo ejecutar el proyecto
+Seguí estos pasos para ejecutar localmente el proyecto:
 
-+ npm install
-+ npm install react-router-dom
-+ npm install @reduxjs/toolkit react-redux
+✅ Requisitos previos
+Antes de comenzar, asegurate de tener instalado:
+
+Node.js (v18 o superior) – Descargar Node.js
+
+npm (se instala junto con Node)
+
+Git (opcional, pero recomendado)
+
+Visual Studio Code (u otro editor de tu preferencia)
+
+🚀 Pasos para ejecutar el proyecto
+Clonar el repositorio
+
+Si aún no lo tenés en tu máquina local, cloná el proyecto con:
+
+En el bash, escribí
+git clone https://github.com/tu-usuario/pv_tp_integrador_grupo12.git
+
+Entrar al directorio del proyecto
+bash
+cd pv_tp_integrador_grupo12
+Instalar las dependencias
+
+Ejecutá los siguientes comandos para instalar todos los paquetes necesarios:
+
+bash
+npm install
+npm install react-router-dom
+npm install @reduxjs/toolkit react-redux
+
+Inicia el servidor con el comando:
+
+npm run dev
+
+Abrir en el navegador
+
+Luego de iniciar el servidor, Vite te mostrará en la terminal una URL similar a:
+http://localhost:5173/
+Abrí esa URL en tu navegador para ver la aplicación funcionando.
