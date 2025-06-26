@@ -13,6 +13,10 @@ import { Provider } from "react-redux";
 import Header from "./views/Header/Header.jsx";
 import ProductForm from "./services/ProductForm.jsx";
 import Footer from "./views/Footer/Footer.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
+import LoginPage from "./pages/LoginPages.jsx";
+
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 function App() {
   return (
@@ -20,11 +24,15 @@ function App() {
       <NavBar></NavBar>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/productos/:id" element={<ProductDetailPage />} />
-        <Route path="/create-product" element={<ProductForm />} />
-        <Route path="/edit-product/:productId" element={<ProductForm />} />
+        {/*Rutas Publicas */}
+        <Route path="/register" element= {<RegisterPage/>} />
+        <Route path="/login" element={<LoginPage/>}/>
+        {/*Rutas Privadas */}
+        <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+        <Route path="/favorites" element={<PrivateRoute><FavoritesPage /></PrivateRoute>} />
+        <Route path="/productos/:id" element={<PrivateRoute><ProductDetailPage /></PrivateRoute>} />
+        <Route path="/create-product" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
+        <Route path="/edit-product/:productId" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
       </Routes>
       <Footer></Footer>
     </>
