@@ -158,7 +158,12 @@ function ProductDetailsPage() {
             <p className="current-price">
               USD {product.price ? product.price.toFixed(2) : "N/A"}
             </p>
-            <p className="product-stock">Stock: {product.rating ? product.rating.count : "N/A"}</p>
+            <p className="product-stock">
+              Stock: {product.rating ? product.rating.count : "N/A"}
+            </p>
+            <p className="product-category">
+              Categoría: {product.category ? product.category : "N/A"}
+            </p>
           </div>
           <div className="product-description-section">
             <p className="label-text">Descripción</p>
