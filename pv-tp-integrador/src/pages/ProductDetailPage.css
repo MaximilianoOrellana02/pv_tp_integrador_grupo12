@@ -128,3 +128,10 @@
 .edit-product-button:hover {
   background-color: #2c3e9e;
 }
+
+@media (max-width: 768px) {
+  .imagen img {
+    width: 100%;
+    height: auto;
+  }
+}

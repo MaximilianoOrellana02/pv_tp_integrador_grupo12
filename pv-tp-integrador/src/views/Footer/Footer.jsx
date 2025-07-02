@@ -66,7 +66,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <p>&copy; {currentYear} Todos los derechos reservados.</p>
-        <p>Desarrollado con en React.</p>
+        <p>Desarrollado en React.</p>
       </div>
     </footer>
   );

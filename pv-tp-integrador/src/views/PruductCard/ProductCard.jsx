@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product, handleToggleFavorite, isFavorite }) => {
   return (
     <div className="products-container">
-      <div className="product.info" key={product.id}>
+      <div className="product-info" key={product.id}>
         <Link
           to={`/productos/${product.id}`}
           state={{
