@@ -20,6 +20,63 @@
   margin-bottom: 25px;
 }
 
+.form-group-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Estilos para el contenedor del select */
+.select {
+  margin-bottom: 20px; /* Espacio debajo del select */
+  text-align: left; /* Alinea la etiqueta y el select a la izquierda */
+}
+
+/* Estilos para la etiqueta (label) */
+.select label {
+  display: block; /* Hace que la etiqueta ocupe su propia línea */
+  margin-bottom: 8px; /* Espacio entre la etiqueta y el select */
+  color: #555;
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+/* Estilos para el elemento select */
+.select select {
+  width: 100%; /* Ocupa todo el ancho disponible en su contenedor */
+  padding: 12px 15px; /* Relleno interno */
+  border: 1px solid #ddd; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 1em;
+  color: #333;
+  background-color: #ffffff;
+  /* Elimina la flecha predeterminada del navegador y añade una personalizada */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.4H18.2c-7.9%200-14.3%206.4-14.3%2014.3s6.4%2014.3%2014.3%2014.3h255.6c7.9%200%2014.3-6.4%2014.3-14.3%200-4.4-1.8-8.7-5.2-12.2z%22%2F%3E%3C%2Fsvg%3E"); /* Flecha hacia abajo SVG */
+  background-repeat: no-repeat;
+  background-position: right 15px center; /* Posiciona la flecha a la derecha */
+  background-size: 10px; /* Tamaño de la flecha */
+  cursor: pointer;
+  box-sizing: border-box; /* Asegura que padding y borde se incluyan en el ancho */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos para el select cuando está enfocado (haciendo click o con tab) */
+.select select:focus {
+  border-color: #007bff; /* Borde azul al enfocar */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra suave al enfocar */
+  outline: none; /* Elimina el contorno por defecto del navegador */
+}
+
+/* Estilos para las opciones dentro del select (pueden variar según el navegador) */
+.select select option {
+  padding: 10px;
+  background-color: #ffffff;
+  color: #333;
+}
+
 .product-form label {
   display: block;
   margin-bottom: 10px;

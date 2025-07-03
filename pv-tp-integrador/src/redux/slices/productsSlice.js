@@ -1,5 +1,3 @@
-// src/redux/slices/productsSlice.js
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchProducts = createAsyncThunk(
@@ -51,7 +49,7 @@ const productsSlice = createSlice({
           ...updatedProduct,
         };
       }
-    },
+    }, 
     deleteProduct: (state, action) => {
       const productIdToDelete = action.payload;
       state.data = state.data.filter(
@@ -85,7 +83,6 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // *** REEMPLAZA EL ARRAY COMPLETO CON LOS DATOS DE LA API ***
         // Esto significa que los productos añadidos localmente DESAPARECERÁN si la página se recarga
         // y la API sobrescribe el estado.
         state.data = action.payload;

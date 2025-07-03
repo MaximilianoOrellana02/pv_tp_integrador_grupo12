@@ -127,16 +127,35 @@ const ProductForm = () => {
             required
           ></textarea>
         </div>
-        <div className="form-group">
-          <label htmlFor="category">Categoría:</label>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          />
+        <div className="form-group-select">
+          <div className="select">
+            <label htmlFor="category">Categoría:</label>
+            <select
+              name="category"
+              id="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Selecciona una categoría</option>
+              <option value="jewelery">Joyería</option>
+              <option value="men's clothing">Ropa de Hombre</option>
+              <option value="electronics">Electrónica</option>
+              <option value="women's clothing">Ropa de Mujer</option>
+            </select>
+          </div>
+          <div className="form-stock">
+            <label htmlFor="stock">Stock:</label>
+            <input
+              type="number"
+              id="stock"
+              name="stock"
+              value={formData.stock}
+              onChange={handleChange}
+              required
+              min="1"
+            />
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="image">URL de la Imagen:</label>
