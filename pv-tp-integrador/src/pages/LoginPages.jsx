@@ -10,6 +10,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -61,13 +67,22 @@ const LoginPage = () => {
           </div>
           <div>
             <label htmlFor="password">Contraseña:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="password-input">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? (
+                  <i class="fa-solid fa-eye"></i>
+                ) : (
+                  <i class="fa-solid fa-eye-slash"></i>
+                )}
+              </button>
+            </div>
           </div>
           <button type="submit">Iniciar Sesión</button>
         </form>
