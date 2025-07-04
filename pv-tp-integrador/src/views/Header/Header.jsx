@@ -38,34 +38,33 @@ function Header() {
 
   return (
     <header>
-  <div className="promo-banner">
-    <h1 className="promo-text">💰 Vean nuestras ofertas y ¡Compren en efectivo con 25% de descuento! 💳</h1>
-  </div>
+      <div className="promo-banner">
+        <h1 className="promo-text">
+          <i class="fa-solid fa-sack-dollar"></i> Vean nuestras ofertas y
+          ¡Compren en efectivo con 25% de descuento!
+          <i class="fa-solid fa-credit-card"></i>
+        </h1>
+      </div>
 
-  <div className="main-header">
+      <div className="main-header">
+        <div className="carousel-container middle-row-animation">
+          {shuffledProductsRow2.map((product) => (
+            <Link to={`/productos/${product.id}`} key={product.id}>
+              <div className="img-item">
+                <img src={product.image} alt={product.title} />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
 
-   
-
-    <div className="carousel-container middle-row-animation">
-      {shuffledProductsRow2.map((product) => (
-        <Link to={`/productos/${product.id}`} key={product.id}>
-          <div className="img-item">
-            <img src={product.image} alt={product.title} />
-          </div>
-        </Link>
-      ))}
-    </div>
-
-
-  </div>
-
-  <div className="main-content">
-    <div className="logo"></div>
-    <div className="text">
-      <p></p>
-    </div>
-  </div>
-</header>
+      <div className="main-content">
+        <div className="logo"></div>
+        <div className="text">
+          <p></p>
+        </div>
+      </div>
+    </header>
   );
 }
 
