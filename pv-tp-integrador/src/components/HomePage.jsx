@@ -28,6 +28,7 @@ const HomePage = () => {
 
   //Estado para el criterio de ordenacion
   const [sortCriteria, setSortCriteria] = useState("default");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     // Despachar el thunk fetchProducts directamente
@@ -43,20 +44,26 @@ const HomePage = () => {
   };
 
   // Lógica para ordenar los productos
-  const sortedProducts = [...products].sort((a, b) => {
-    switch (sortCriteria) {
-      case "priceAsc":
-        return a.price - b.price; // Ordenar por precio ascendente
-      case "priceDesc":
-        return b.price - a.price; // Ordenar por precio descendente
-      case "nameAsc":
-        return a.title.localeCompare(b.title); // Ordenar por nombre ascendente
-      case "nameDesc":
-        return b.title.localeCompare(a.title); // Ordenar por nombre descendente
-      default:
-        return 0;
-    }
-  });
+// Primero filtramos los productos según el término de búsqueda
+const filteredProducts = products.filter((product) =>
+  product.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+// Luego los ordenamos según el criterio seleccionado
+const sortedProducts = [...filteredProducts].sort((a, b) => {
+  switch (sortCriteria) {
+    case "priceAsc":
+      return a.price - b.price;
+    case "priceDesc":
+      return b.price - a.price;
+    case "nameAsc":
+      return a.title.localeCompare(b.title);
+    case "nameDesc":
+      return b.title.localeCompare(a.title);
+    default:
+      return 0;
+  }
+});
 
   if (loading) {
     return <div>Cargando productos...</div>;
@@ -73,7 +80,15 @@ const HomePage = () => {
       <div className="products-container">
         <div className="products-header">
           <h1>Productos</h1>
-
+              <div className="search-bar">
+                  <input
+                    type="text"
+                    placeholder="Buscar productos..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="input-busqueda"
+                  />
+               </div>
           <div className="sort-controls">
             <label htmlFor="sort-select">Ordenar por:</label>
             <select
